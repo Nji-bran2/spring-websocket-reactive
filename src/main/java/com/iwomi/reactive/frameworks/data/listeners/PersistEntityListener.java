@@ -21,21 +21,21 @@ public class PersistEntityListener {
     @PostLoad
     public void persistLoad(Object entityInstance) {
         System.out.println("Loaded "+ entityInstance);
-        var model = new MessageModel("Loaded oh", DatabaseEnum.LOADED);
+        var model = new MessageModel("Loaded oh","",  DatabaseEnum.LOADED);
         sendWebsocketNotif(model);
     }
 
     @PrePersist
     public void creating(Object entityInstance) {
         System.out.println("Creating "+ entityInstance);
-        var model = new MessageModel("Creating socket", DatabaseEnum.CREATING);
+        var model = new MessageModel("Creating socket","",  DatabaseEnum.CREATING);
         sendWebsocketNotif(model);
     }
 
     @PostPersist
     public void Created(Object entityInstance) {
         System.out.println("created "+ entityInstance);
-        var model = new MessageModel("Created socket", DatabaseEnum.CREATED);
+        var model = new MessageModel("Created socket","", DatabaseEnum.CREATED);
         sendWebsocketNotif(model);
     }
 
@@ -61,5 +61,9 @@ public class PersistEntityListener {
 
     private void sendWebsocketNotif(MessageModel model) {
         iWebsocketService.sendToAll(model);
+    }
+
+    private void sendWebsocketNotifToUser(MessageModel model) {
+        iWebsocketService.sendToUser(model);
     }
 }

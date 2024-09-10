@@ -5,6 +5,6 @@ import org.springframework.messaging.handler.annotation.SendTo;
 
 public interface IWebsocketService {
     void sendToAll(final MessageModel model);
-    MessageModel sendToUser(final MessageModel model);
+    void sendToUser(final MessageModel model);
 
 }

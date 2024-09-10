@@ -20,7 +20,7 @@ public class WebsocketService implements IWebsocketService{
     }
 
     @Override
-    public MessageModel sendToUser(MessageModel model) {
-        return null;
+    public void sendToUser( MessageModel model) {
+         simpMessagingTemplate.convertAndSendToUser(model.to(), "/queue/specific-user", model);
     }
 }

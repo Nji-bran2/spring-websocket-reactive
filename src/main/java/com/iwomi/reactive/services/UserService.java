@@ -24,4 +24,7 @@ public class UserService {
     public UserEntity create(UserEntity userEntity) {
         return userRepository.save(userEntity);
     }
+    public boolean userExists(String name) {
+        return userRepository.existsById(name);
+    }
 }
